@@ -16,13 +16,23 @@ Returns a JSON object of all members
 ?status: Optional, defaults to all members. Can also be 'in' or 'out', which displays checked-in and checked-out members respecitvely
 
 
+`[GET] /members/:id` `/member/:id`
+Returns a JSON object of member id 
+
+
 `[GET] /member/:id/toggle`
 *NOTE*: Supposed to be `PUT` but cheating for prototype
 Toggles when someone is checked in our out. Technically returns an object { id, boolean }
 
 
 `[GET] /member/:id/activate`
-*NOTE*: Supposed to be `POST` but cheating for prototype
+- *NOTE*: Supposed to be `POST` but cheating for prototype
+- Forces `hasaccess` to `true`
+
+
+`[GET] /member/:id/deactivate`
+- *NOTE*: Supposed to be `POST` but cheating for prototype
+- Forces `hasaccess` to `false`
 
 
 ### Team members

@@ -21,10 +21,19 @@ function getMember(id) {
 
 
 // Adds a line to the log file
-// arg: id
-// arg: boolean 
-function logEvent(obj) {
-	// fs.createWriteStream();
+// obj: person of the object after action that has been completed
+// status: a string: 'toggled'
+function logEvent(obj, status) {
+	// var tmp = fs.createWriteStream(logfile);
+	if (status) {
+		switch (status) {
+			case 'toggled':
+				console.log(obj.name + ' has checked ' + (obj.checkedin) ? 'in' : 'out'); 
+				break;
+			default:
+				console.log('Something has been logged!');
+		}	
+	}
 };
 
 
@@ -41,17 +50,16 @@ function toggleStatus(id) {
 	} else {
 		console.log('toggling ' + member[0].checkedin);
 		member[0].checkedin = !member[0].checkedin;
-		logEvent(member[0]);
+		logEvent(member[0], 'toggled');
 		return member[0];
-
 	}
 };
 
 // Card reader is in ;000049? format
 // https://www.npmjs.com/package/card-swipe
 if (DEBUG) {
-	console.log(getMember('a'));
-	console.log(getMember('000052'));
+	// console.log(getMember('a'));
+	// console.log(getMember('000052'));
 	console.log(toggleStatus('000049'));	
 }
 
@@ -61,6 +69,21 @@ function handleError(res, reason, message, code) {
 	console.log("ERROR: " + reason);
 	res.status(code || 500).json({"error": message});
 }
+
+
+app.get('/members/:id', function (req, res) {
+	var tmp, member = getMember(req.params.id);
+	if (_.isEmpty(member)) {
+		tmp = {
+			property: 'error',
+			message: 'User not found.'
+		}
+	} else {
+		tmp = member[0];
+		res.send(tmp);
+	}
+});
+
 
 /*  "/members"
  *	Returns json of all members
@@ -85,6 +108,20 @@ app.get('/members', function (req, res) {
 					res.json(objMembers);
 			}
 		}
+	}
+});
+
+
+app.get('/member/:id', function (req, res) {
+	var tmp, member = getMember(req.params.id);
+	if (_.isEmpty(member)) {
+		tmp = {
+			property: 'error',
+			message: 'User not found.'
+		}
+	} else {
+		tmp = member[0];
+		res.send(tmp);
 	}
 });
 
