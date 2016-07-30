@@ -19,9 +19,19 @@ function getMember(id) {
 };
 
 
-// arg: id
-function toggleStatus() {
-
+// updates members variable automatically.
+// arg: string of member id, e.g. ;000052?
+// returns false if no member found
+function toggleStatus(id) {
+	console.log('toggle', id)
+	console.log (objMembers);
+	var member = getMember(id);
+	if (_.isEmpty(member)) {
+		return false;
+	} else {
+		console.log('toggling ' + member[0].checkedin);
+		member[0].checkedin = !member[0].checkedin;
+	}
 };
 
 // Card reader is in ;000049? format
@@ -29,4 +39,5 @@ function toggleStatus() {
 if (DEBUG) {
 	console.log(getMember('a'));
 	console.log(getMember(';000052?'));
+	console.log(toggleStatus(';000049?'));	
 }
