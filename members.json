@@ -2,21 +2,25 @@
 	{ 
 		"name": "Jordan Burton",
 		"id": ";000049?",
-		"checkedin": false
+		"checkedin": false,
+		"hasAccess": true
 	},
 	{ 
 		"name": "Derrick Casey",
 		"id": ";000050?",
-		"checkedin": false
+		"checkedin": false,
+		"hasAccess": true		
 	},
 	{ 
 		"name": "Beth Hernandez",
 		"id": ";000051?",
-		"checkedin": false
+		"checkedin": false,
+		"hasAccess": true
 	},
 	{ 
 		"name": "Fredrick Hart",
 		"id": ";000052?",
-		"checkedin": false		
+		"checkedin": false,
+		"hasAccess": true
 	}
 ]
