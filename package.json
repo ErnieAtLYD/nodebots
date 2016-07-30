@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/ErnieAtLYD/nodebots/issues"
   },
-  "homepage": "https://github.com/ErnieAtLYD/nodebots#readme"
+  "homepage": "https://github.com/ErnieAtLYD/nodebots#readme",
+  "scripts": {
+    "start": "node app.js"
+  }
 }

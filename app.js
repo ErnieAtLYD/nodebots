@@ -1,17 +1,15 @@
 console.log ('NODEBOTS DAY PROJECT');
 // TO DO:
 // [ ] Write to a log file
-// [ ] Write a RESTful API
-// [ ] The app has to always be running to accept input.
+// [X] Write a RESTful API
+// [X] Install a Express server
 // [X] Add a checked in status to members to toggle
-
-// [GET] /members 
-// [GET] /members/:id/:status
 
 var express = require('express'),
 	fs = require('fs'),
 	_ = require('underscore'),
 	filename = 'members.json',
+	logfile = 'logs.csv',
 	DEBUG = true,
 	objMembers = JSON.parse(fs.readFileSync(filename, 'utf8'));
 
@@ -27,6 +25,14 @@ function getMember(id) {
 };
 
 
+// Adds a line to the log file
+// arg: id
+// arg: boolean 
+function logEvent(id, isCheckedIn) {
+	// fs.createWriteStream();
+};
+
+
 // updates members variable automatically.
 // arg: string of member id, e.g. ;000052?
 // returns false if no member found
@@ -39,6 +45,7 @@ function toggleStatus(id) {
 	} else {
 		console.log('toggling ' + member[0].checkedin);
 		member[0].checkedin = !member[0].checkedin;
+		logEvent(id, member[0].checkedin);
 	}
 };
 
@@ -51,9 +58,17 @@ if (DEBUG) {
 }
 
 // Express REST functions
+// Generic error handler used by all endpoints.
+function handleError(res, reason, message, code) {
+  console.log("ERROR: " + reason);
+  res.status(code || 500).json({"error": message});
+}
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
+/*  "/members"
+ *	Returns json of all members
+ */
+app.get('/members', function (req, res) {
+  res.json(objMembers);
 });
 
 app.listen(3000, function () {
