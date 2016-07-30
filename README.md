@@ -1,11 +1,23 @@
 # NODEBOTS DAY PROJECT
 
-More information coming soon.
+Build a prototype membership system using a card reader, a raspberry with a LED.
+
+The goal: if a user swipes their card, the LEDs should blink green if they have access, check in or out, blink red if they do not have access to the space.
+
+`app.js` is the group of RESTful stub APIs that handle basic co-working membership. They are static json files, because we only had six hours to work on this.
+
+`reader.js`, developed by Edwin, has the javascript for Raspberry Pi which leverages the API. There is also a third repo integrating this API with a [Facebook Messenger Bot](https://developers.facebook.com/blog/post/2016/04/12/bots-for-messenger/).
+
+### Tech Setup
 
 Node.js project running an Express server - here's [how to install node.js project](https://github.com/codeforamerica/howto/blob/master/Node.js.md).
 
 Running on localhost
-http://localhost:3000
+
+```
+npm install
+npm start
+```
 
 
 ### REST APIs
@@ -37,4 +49,7 @@ Toggles when someone is checked in our out. Technically returns an object { id, 
 
 ### Team members
 
-Earle Acosta, Ernie Hsiung, Edwin Reynoso, Kelvin Perez
+- Earle Acosta
+- Ernie Hsiung
+- Edwin Reynoso
+- Kelvin Perez
