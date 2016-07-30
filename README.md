@@ -12,6 +12,7 @@ http://localhost:3000
 
 `[GET] /members/`
 Returns a JSON object of all members 
+?status: Optional, defaults to all members. Can also be 'in' or 'out', which displays checked-in and checked-out members respecitvely
 
 ### Team members
 

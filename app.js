@@ -1,9 +1,4 @@
 console.log ('NODEBOTS DAY PROJECT');
-// TO DO:
-// [ ] Write to a log file
-// [X] Write a RESTful API
-// [X] Install a Express server
-// [X] Add a checked in status to members to toggle
 
 var express = require('express'),
 	fs = require('fs'),
@@ -60,17 +55,36 @@ if (DEBUG) {
 // Express REST functions
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {
-  console.log("ERROR: " + reason);
-  res.status(code || 500).json({"error": message});
+	console.log("ERROR: " + reason);
+	res.status(code || 500).json({"error": message});
 }
 
 /*  "/members"
  *	Returns json of all members
  */
 app.get('/members', function (req, res) {
-  res.json(objMembers);
+	var params = req.query;
+	if (_.isEmpty(params)) {
+		res.json(objMembers);		
+	} else {
+		if (params.status) {
+			switch (params.status) {
+				case 'in':
+					filter = _.filter(objMembers, {"checkedin": true});
+					res.json(filter);
+					break;
+				case 'out':
+					filter = _.filter(objMembers, {"checkedin": false});
+					res.json(filter);
+					break;
+				default:
+					res.json(objMembers);
+			}
+		}
+	}
+
 });
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+	console.log('Example app listening on port 3000!');
 });
