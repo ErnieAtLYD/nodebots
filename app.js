@@ -1,13 +1,21 @@
 console.log ('NODEBOTS DAY PROJECT');
 // TO DO:
 // [ ] Write to a log file
-// [ ] Add a checked in status to members to toggle
+// [ ] Write a RESTful API
+// [ ] The app has to always be running to accept input.
+// [X] Add a checked in status to members to toggle
 
-var fs = require('fs'),
+// [GET] /members 
+// [GET] /members/:id/:status
+
+var express = require('express'),
+	fs = require('fs'),
 	_ = require('underscore'),
 	filename = 'members.json',
 	DEBUG = true,
 	objMembers = JSON.parse(fs.readFileSync(filename, 'utf8'));
+
+var app = express();
 
 
 // arg: id, string of id inside json
@@ -41,3 +49,13 @@ if (DEBUG) {
 	console.log(getMember(';000052?'));
 	console.log(toggleStatus(';000049?'));	
 }
+
+// Express REST functions
+
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
+
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});

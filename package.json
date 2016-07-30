@@ -1,0 +1,22 @@
+{
+  "name": "nodebots",
+  "version": "1.0.0",
+  "description": "Nodebots hackday project",
+  "main": "app.js",
+  "dependencies": {
+    "cors": "^2.7.1",
+    "express": "^4.14.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErnieAtLYD/nodebots.git"
+  },
+  "author": "Ernie Hsiung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ErnieAtLYD/nodebots/issues"
+  },
+  "homepage": "https://github.com/ErnieAtLYD/nodebots#readme"
+}
